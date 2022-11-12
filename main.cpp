@@ -7,7 +7,7 @@ int main()
 {
     auto start = std::chrono::high_resolution_clock::now();
 
-    std::cout << "Hello World" << std::endl;
+    std::cout << "Hello World\n";
 
     day1::Run();
 
