@@ -3,13 +3,13 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "command": "g++",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}\\**.cpp",
+                "${workspaceFolder}/**.cpp",
                 "-o",
-                "${workspaceFolder}\\AOC2022.exe"
+                "${workspaceFolder}/AOC2022"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
