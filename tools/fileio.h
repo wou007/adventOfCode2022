@@ -1,3 +1,6 @@
+#ifndef FILEIO_H
+#define FILEIO_H
+
 #include <string>
 #include <vector>
 #include <fstream>
@@ -24,3 +27,5 @@ namespace fileio
         }
     }
 }
+
+#endif
