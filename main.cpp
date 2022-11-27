@@ -9,9 +9,9 @@ int main()
 
     std::cout << "Hello World\n";
 
-    day1::Run();
+    day1::Run("input/day1.txt");
 
     auto stop = std::chrono::high_resolution_clock::now();
 
-    std::cout << "duration: " << std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() << std::endl;
+    std::cout << "duration: " << std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count() << " usec" << std::endl;
 }

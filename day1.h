@@ -1,4 +1,4 @@
 namespace day1
 {
-    void Run();
+    void Run(const char* pFilePath);
 }
