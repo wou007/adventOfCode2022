@@ -3,6 +3,7 @@
 #include "tools/fileio.h"
 #include "tools/stringtools.h"
 #include "tools/matrix.h"
+#include "tools/vectortools.h"
 
 namespace day1
 {

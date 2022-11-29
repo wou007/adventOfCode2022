@@ -6,7 +6,7 @@
             "command": "g++",
             "args": [
                 "-fdiagnostics-color=always",
-                "-O0",
+                "-O3",
                 "-g",
                 "${workspaceFolder}/**.cpp",
                 "-o",
