@@ -166,6 +166,29 @@ namespace matrix
             return result;
         }
 
+        void IncreaseSizeInAllDirections(char defaultValue)
+        {
+            std::vector<std::vector<char>> newVector;
+            std::vector<char> emptyLine(m_matrix.size() + 2,defaultValue);
+            newVector.push_back(emptyLine);
+
+            for(const std::vector<char>& rL : m_matrix)
+            {
+                std::vector<char> newLine;
+                newLine.push_back(defaultValue);
+                for(char c : rL)
+                {
+                    newLine.push_back(c);
+                }
+                newLine.push_back(defaultValue);
+                newVector.push_back(newLine);
+            }
+
+            newVector.push_back(emptyLine);
+
+            m_matrix = newVector;
+        }
+
 
 
         char GetValueOfPoint(Coordinate c) const

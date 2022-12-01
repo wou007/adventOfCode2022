@@ -50,28 +50,46 @@ namespace vectortools {
     template <class T>
     void RemoveItemsWithValue(std::vector<T>& rVector, const T& rValue)
     {
-        for(auto b = rVector.begin(); b <= rVector.end(); b++)
+        for(auto b = rVector.begin(); b < rVector.end(); ++b)
         {
             if(*b == rValue)
             {
                 rVector.erase(b);
+                --b;
             }
         }
     }
 
     template <class T>
-    void RemoveDublicateItems(std::vector<T>& rVector)
+    void RemoveDuplicateItems(std::vector<T>& rVector)
     {
         std::vector<T> foundItems;
-        for(auto b = rVector.begin(); b <= rVector.end(); b++)
+        for(auto b = rVector.begin(); b < rVector.end(); ++b)
         {
             if(DoesContainItem(foundItems,*b) > 0)
             {
                 rVector.erase(b);
+                --b;
             }
             else
             {
                 foundItems.push_back(*b);
+            }
+        }
+    }
+
+    template <class T>
+    void Print(const std::vector<T>& rVector)
+    {
+        for(int i = 0; i < rVector.size(); ++i)
+        {
+            if(i < (rVector.size() - 1))
+            {
+                std::cout << rVector[i] << ',';
+            }
+            else
+            {
+                std::cout << rVector[i] << '\n';
             }
         }
     }
