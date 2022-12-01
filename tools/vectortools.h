@@ -1,5 +1,5 @@
-#ifndef VECTOR_TOOLS_H
-#define VECTOR_TOOLS_H
+#ifndef VECTOR_TOOLS_H_
+#define VECTOR_TOOLS_H_
 
 #include <vector>
 #include <array>
@@ -7,7 +7,7 @@
 namespace vectortools {
 
     template <class T>
-    int CountAppearancesOfItem(const std::vector<T>& rVector, const T& rItem)
+    static int CountAppearancesOfItem(const std::vector<T>& rVector, const T& rItem)
     {
         int result = 0;
 
@@ -23,7 +23,7 @@ namespace vectortools {
     }
 
     template <class T>
-    bool DoesContainItem(const std::vector<T>& rVector, const T& rItem)
+    static bool DoesContainItem(const std::vector<T>& rVector, const T& rItem)
     {
         for (const T& i : rVector)
         {
@@ -37,7 +37,7 @@ namespace vectortools {
     }
 
     template <class T>
-    void RemoveItemOnIndex(std::vector<T>& rVector, int index)
+    static void RemoveItemOnIndex(std::vector<T>& rVector, int index)
     {
         auto it = rVector.begin();
         for(int i = 0; i < index; ++i)
@@ -48,7 +48,7 @@ namespace vectortools {
     }
 
     template <class T>
-    void RemoveItemsWithValue(std::vector<T>& rVector, const T& rValue)
+    static void RemoveItemsWithValue(std::vector<T>& rVector, const T& rValue)
     {
         for(auto b = rVector.begin(); b < rVector.end(); ++b)
         {

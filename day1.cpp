@@ -6,6 +6,8 @@
 #include "tools/matrix.h"
 #include "tools/vectortools.h"
 
+#include "day1.h"
+
 namespace day1
 {
     void Part1(const char* pFilePath)
@@ -58,10 +60,9 @@ namespace day1
 
         std::sort(list.begin(), list.end());
         auto end = list.end();
-        end--;
-        result += *end--;
-        result += *end--;
-        result += *end--;
+        result += *--end;
+        result += *--end;
+        result += *--end;
 
 
         std::cout << "Day 01-2: " << result << "\n";

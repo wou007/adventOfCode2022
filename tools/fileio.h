@@ -1,5 +1,5 @@
-#ifndef FILEIO_H
-#define FILEIO_H
+#ifndef FILEIO_H_
+#define FILEIO_H_
 
 #include <string>
 #include <vector>
@@ -7,7 +7,7 @@
 
 namespace fileio
 {
-    void fileToStringVector(const char* pFilePath, std::vector<std::string>& rOutput)
+    static void fileToStringVector(const char* pFilePath, std::vector<std::string>& rOutput)
     {
         std::ifstream infile(pFilePath);
         std::string line;
@@ -17,7 +17,7 @@ namespace fileio
         }
     }
 
-    void fileToLongVector(const char* pFilePath, std::vector<long>& rOutput)
+    static void fileToLongVector(const char* pFilePath, std::vector<long>& rOutput)
     {
         std::ifstream infile(pFilePath);
         std::string line;
