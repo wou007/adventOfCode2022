@@ -17,13 +17,10 @@ namespace day2
         std::vector<std::string> input;
         fileio::fileToStringVector(pFilePath, input);
 
-        for(std::string l : input)
+        for(const std::string& l : input)
         {   
-            std::vector<std::string> splits;
-            stringtools::splitString(l," ",splits);
-
-            uint8_t a = (splits[0].c_str()[0] - 'A') + 1;
-            uint8_t b = (splits[1].c_str()[0] - 'X') + 1;
+            uint8_t a = (l.c_str()[0] - 'A') + 1;
+            uint8_t b = (l.c_str()[2] - 'X') + 1;
 
             result += b;
 
@@ -36,7 +33,6 @@ namespace day2
                 result += 6;
             }
         }
-        
 
         std::cout << "Day 02-1: " << result << "\n";
     }
@@ -48,13 +44,10 @@ namespace day2
         std::vector<std::string> input;
         fileio::fileToStringVector(pFilePath, input);
 
-        for(std::string l : input)
-        {   
-            std::vector<std::string> splits;
-            stringtools::splitString(l," ",splits);
-
-            uint8_t a = (splits[0].c_str()[0] - 'A') + 1;
-            uint8_t b = (splits[1].c_str()[0] - 'X');
+        for(const std::string& l : input)
+        {
+            uint8_t a = (l.c_str()[0] - 'A') + 1;
+            uint8_t b = (l.c_str()[2] - 'X');
 
             result += b * 3;
 
