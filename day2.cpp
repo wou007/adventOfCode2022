@@ -14,8 +14,29 @@ namespace day2
     {
         long result = 0;
 
-        std::vector<long> input;
-        fileio::fileToLongVector(pFilePath, input);
+        std::vector<std::string> input;
+        fileio::fileToStringVector(pFilePath, input);
+
+        for(std::string l : input)
+        {   
+            std::vector<std::string> splits;
+            stringtools::splitString(l," ",splits);
+
+            uint8_t a = (splits[0].c_str()[0] - 'A') + 1;
+            uint8_t b = (splits[1].c_str()[0] - 'X') + 1;
+
+            result += b;
+
+            if(a == b)
+            {
+                result += 3;
+            }
+            else if((a == 1 && b == 2) || (a == 2 && b == 3) || (a == 3 && b == 1))
+            {
+                result += 6;
+            }
+        }
+        
 
         std::cout << "Day 02-1: " << result << "\n";
     }
@@ -24,8 +45,34 @@ namespace day2
     {
         long result = 0;
 
-        std::vector<long> input;
-        fileio::fileToLongVector(pFilePath, input);
+        std::vector<std::string> input;
+        fileio::fileToStringVector(pFilePath, input);
+
+        for(std::string l : input)
+        {   
+            std::vector<std::string> splits;
+            stringtools::splitString(l," ",splits);
+
+            uint8_t a = (splits[0].c_str()[0] - 'A') + 1;
+            uint8_t b = (splits[1].c_str()[0] - 'X');
+
+            long round = b * 3;
+
+            if(b == 0)
+            {
+                round += ((a + 1) % 3) + 1;
+            }
+            else if(b == 1)
+            {
+                round += a;
+            }
+            else
+            {
+                round += ((a) % 3) + 1;
+            }
+
+            result += round;
+        }
 
         std::cout << "Day 02-2: " << result << "\n";
     }
