@@ -56,22 +56,20 @@ namespace day2
             uint8_t a = (splits[0].c_str()[0] - 'A') + 1;
             uint8_t b = (splits[1].c_str()[0] - 'X');
 
-            long round = b * 3;
+            result += b * 3;
 
             if(b == 0)
             {
-                round += ((a + 1) % 3) + 1;
+                result += ((a + 1) % 3) + 1;
             }
             else if(b == 1)
             {
-                round += a;
+                result += a;
             }
             else
             {
-                round += ((a) % 3) + 1;
+                result += ((a) % 3) + 1;
             }
-
-            result += round;
         }
 
         std::cout << "Day 02-2: " << result << "\n";
