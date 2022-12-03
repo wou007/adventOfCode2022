@@ -24,7 +24,7 @@ namespace day3
 
             for(char c : first)
             {
-                if(stringtools::countAppearancesInString(second,c) > 0)
+                if(stringtools::contains(second,c) > 0)
                 {
                     result += c < ('Z' + 1) ? (c - 'A') + 27 : (c - 'a') + 1;
                     break;
@@ -46,7 +46,7 @@ namespace day3
         {
             for(char c : input[i])
             {
-                if(stringtools::countAppearancesInString(input[i + 1],c) > 0 && stringtools::countAppearancesInString(input[i + 2],c) > 0)
+                if(stringtools::contains(input[i + 1],c) > 0 && stringtools::countAppearancesInString(input[i + 2],c) > 0)
                 {
                     result += c < ('Z' + 1) ? (c - 'A') + 27 : (c - 'a') + 1;;
                     break;

@@ -21,10 +21,20 @@ namespace matrix
         int m_y;
     };
 
+    template <class T>
     class Matrix
     {
     public:
         Matrix() = default;
+        Matrix(int width, int height, T defaultValue)
+        {
+            for(int i = 0; i < height; ++i)
+            {
+                std::vector<T> temp = std::vector<T>(width,defaultValue);
+                m_matrix.push_back(temp);
+            }
+        }
+
         virtual ~Matrix() = default;
 
         int GetHeight() const
@@ -44,8 +54,8 @@ namespace matrix
             fileio::fileToStringVector(pFilePath,file);
             for(int i = file.size() - 1; i >=0; --i)
             {
-                std::vector<char> temp;
-                for(char c : file[i])
+                std::vector<T> temp;
+                for(T c : file[i])
                 {
                     temp.push_back(c);
                 }
@@ -57,7 +67,7 @@ namespace matrix
         {
             for(int i = m_matrix.size() - 1; i >=0; --i)
             {
-                for(char c : m_matrix[i])
+                for(T c : m_matrix[i])
                 {
                     std::cout << c;
                 }
@@ -65,17 +75,17 @@ namespace matrix
             }
         }
 
-        char GetValueOfPoint(int x, int y) const
+        T GetValueOfPoint(int x, int y) const
         {
             return m_matrix[y][x];
         }
 
-        void SetValueOfPoint(int x, int y, char value)
+        void SetValueOfPoint(int x, int y, T value)
         {
             m_matrix[y][x] = value;
         }
 
-        int GetOccurencesOfField(char t, std::vector<Coordinate>* pList = nullptr) const
+        int GetOccurencesOfField(T t, std::vector<Coordinate>* pList = nullptr) const
         {
             int result = 0;
             if(pList != nullptr)
@@ -143,7 +153,7 @@ namespace matrix
             return results;
         }
 
-        int GetOccurencesOfFieldInSelection(char t, const std::vector<Coordinate>& rSelection, std::vector<Coordinate>* pList = nullptr) const
+        int GetOccurencesOfFieldInSelection(T t, const std::vector<Coordinate>& rSelection, std::vector<Coordinate>* pList = nullptr) const
         {
             int result = 0;
             if(pList != nullptr)
@@ -166,17 +176,17 @@ namespace matrix
             return result;
         }
 
-        void IncreaseSizeInAllDirections(char defaultValue)
+        void IncreaseSizeInAllDirections(T defaultValue)
         {
-            std::vector<std::vector<char>> newVector;
-            std::vector<char> emptyLine(m_matrix.size() + 2,defaultValue);
+            std::vector<std::vector<T>> newVector;
+            std::vector<T> emptyLine(m_matrix.size() + 2,defaultValue);
             newVector.push_back(emptyLine);
 
-            for(const std::vector<char>& rL : m_matrix)
+            for(const std::vector<T>& rL : m_matrix)
             {
-                std::vector<char> newLine;
+                std::vector<T> newLine;
                 newLine.push_back(defaultValue);
-                for(char c : rL)
+                for(T c : rL)
                 {
                     newLine.push_back(c);
                 }
@@ -191,12 +201,12 @@ namespace matrix
 
 
 
-        char GetValueOfPoint(Coordinate c) const
+        T GetValueOfPoint(Coordinate c) const
         {
             return GetValueOfPoint(c.GetX(), c.GetY());
         }
 
-        void SetValueOfPoint(Coordinate c, char value)
+        void SetValueOfPoint(Coordinate c, T value)
         {
             SetValueOfPoint(c.GetX(), c.GetY(), value);
         }
@@ -207,7 +217,7 @@ namespace matrix
         }
 
     private:
-        std::vector<std::vector<char>> m_matrix;
+        std::vector<std::vector<T>> m_matrix;
     };
 
     

@@ -45,6 +45,16 @@ namespace stringtools {
         return result;
     }
 
+    inline bool contains(const std::string& rInput, const std::string& rItemToFind)
+    {
+        return rInput.find(rItemToFind) != std::string::npos;
+    }
+
+    inline bool contains(const std::string& rInput, char itemToFind)
+    {
+        return rInput.find(itemToFind) != std::string::npos;
+    }
+
     static long countAppearancesInString(const std::string& rInput, char itemToFind)
     {
         long result = 0;
