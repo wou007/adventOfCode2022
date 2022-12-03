@@ -45,6 +45,19 @@ namespace stringtools {
         return result;
     }
 
+    static long countAppearancesInString(const std::string& rInput, char itemToFind)
+    {
+        long result = 0;
+        int pos = 0, prevPos = 0;
+        while((pos = rInput.find(itemToFind, prevPos)) != std::string::npos)
+        {
+            prevPos = pos + sizeof(itemToFind);
+            ++result;
+        }
+
+        return result;
+    }
+
     static void eraseStringFromString(std::string& rInput, const std::string& rItemToRemove)
     {
         int pos = 0;
