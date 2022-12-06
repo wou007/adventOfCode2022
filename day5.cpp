@@ -10,22 +10,43 @@
 
 namespace day5
 {
+    std::vector<std::vector<char>> ParseHeaderData(const std::vector<std::string>& rInput)
+    {
+        std::vector<std::vector<char>> result(9);
+
+        for(int j = rInput.size() - 1; j >= 0; --j)
+        {
+            for(int i = 1; i < rInput[j].length(); i += 4)
+            {
+                if(rInput[j][i] != ' ')
+                {
+                    result[((i + 3) / 4) - 1].push_back(rInput[j][i]);
+                }
+            }
+        }
+
+        return result;
+    }
+
     void Part1(const char* pFilePath)
     {
         std::vector<std::string> input;
         fileio::fileToStringVector(pFilePath, input);
 
         std::vector<std::vector<char>> ship;
-        ship.push_back(std::vector<char>({' '}));
-        ship.push_back(std::vector<char>({'R','G','H','Q','S','B','T','N'}));
-        ship.push_back(std::vector<char>({'H','S','F','D','P','Z','J'}));
-        ship.push_back(std::vector<char>({'Z','H','V'}));
-        ship.push_back(std::vector<char>({'M','Z','J','F','G','H'}));
-        ship.push_back(std::vector<char>({'T','Z','C','D','L','M','S','R'}));
-        ship.push_back(std::vector<char>({'M','T','W','V','H','Z','J'}));
-        ship.push_back(std::vector<char>({'T','F','P','L','Z'}));
-        ship.push_back(std::vector<char>({'Q','V','W','S'}));
-        ship.push_back(std::vector<char>({'W','H','L','M','T','D','N','C'}));
+
+        std::vector<std::string> header;
+
+        while(!stringtools::contains(input[0],"move"))
+        {
+            header.push_back(input[0]);
+            vectortools::RemoveItemOnIndex(input,0);
+        }
+
+        header.pop_back();
+        header.pop_back();
+
+        ship = ParseHeaderData(header);
 
         for(const std::string& rL : input)
         {
@@ -34,8 +55,8 @@ namespace day5
 
             for(int i = 0; i < stoi(output[1]); ++i)
             {
-                ship[stoi(output[5])].push_back(ship[stoi(output[3])][ship[stoi(output[3])].size() - 1]);
-                ship[stoi(output[3])].pop_back();
+                ship[stoi(output[5]) - 1].push_back(ship[stoi(output[3]) - 1][ship[stoi(output[3]) - 1].size() - 1]);
+                ship[stoi(output[3]) - 1].pop_back();
             }
         }
 
@@ -55,16 +76,19 @@ namespace day5
         fileio::fileToStringVector(pFilePath, input);
 
         std::vector<std::vector<char>> ship;
-        ship.push_back(std::vector<char>({' '}));
-        ship.push_back(std::vector<char>({'R','G','H','Q','S','B','T','N'}));
-        ship.push_back(std::vector<char>({'H','S','F','D','P','Z','J'}));
-        ship.push_back(std::vector<char>({'Z','H','V'}));
-        ship.push_back(std::vector<char>({'M','Z','J','F','G','H'}));
-        ship.push_back(std::vector<char>({'T','Z','C','D','L','M','S','R'}));
-        ship.push_back(std::vector<char>({'M','T','W','V','H','Z','J'}));
-        ship.push_back(std::vector<char>({'T','F','P','L','Z'}));
-        ship.push_back(std::vector<char>({'Q','V','W','S'}));
-        ship.push_back(std::vector<char>({'W','H','L','M','T','D','N','C'}));
+
+        std::vector<std::string> header;
+
+        while(!stringtools::contains(input[0],"move"))
+        {
+            header.push_back(input[0]);
+            vectortools::RemoveItemOnIndex(input,0);
+        }
+
+        header.pop_back();
+        header.pop_back();
+
+        ship = ParseHeaderData(header);
 
         for(const std::string& rL : input)
         {
@@ -75,14 +99,14 @@ namespace day5
 
             for(int i = 0; i < stoi(output[1]); ++i)
             {
-                stack.push_back(ship[stoi(output[3])].back());
-                ship[stoi(output[3])].pop_back();
+                stack.push_back(ship[stoi(output[3]) - 1].back());
+                ship[stoi(output[3]) - 1].pop_back();
             }
 
             for(int i = 0; i < stoi(output[1]); ++i)
             {
-            ship[stoi(output[5])].push_back(stack.back());
-            stack.pop_back();
+                ship[stoi(output[5]) - 1].push_back(stack.back());
+                stack.pop_back();
             }
         }
 
