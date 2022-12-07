@@ -96,6 +96,7 @@ namespace day5
             stringtools::splitString(rL," ",output);
 
             std::vector<char> stack;
+            stack.reserve(stoi(output[1]));
 
             for(int i = 0; i < stoi(output[1]); ++i)
             {

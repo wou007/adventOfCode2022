@@ -8,6 +8,7 @@
 #include "day4.h"
 #include "day5.h"
 #include "day6.h"
+#include "day7.h"
 
 void RunDay(std::function<void()> f, int runs = 1)
 {
@@ -38,11 +39,14 @@ void RunDay(std::function<void()> f, int runs = 1)
 int main()
 {
     std::cout << "Advent of code 2022\n\n";
+    RunDay([](){
 
-    // RunDay([](){day1::Run("input/day1.txt");});
-    // RunDay([](){day2::Run("input/day2.txt");});
-    // RunDay([](){day3::Run("input/day3.txt");});
-    // RunDay([](){day4::Run("input/day4.txt");});
-    // RunDay([](){day5::Run("input/day5.txt");});
-    RunDay([](){day6::Run("input/day6.txt");});
-}
+        // RunDay([](){day1::Run("input/day1.txt");});
+        // RunDay([](){day2::Run("input/day2.txt");});
+        // RunDay([](){day3::Run("input/day3.txt");});
+        // RunDay([](){day4::Run("input/day4.txt");});
+        // RunDay([](){day5::Run("input/day5.txt");});
+        // RunDay([](){day6::Run("input/day6.txt");});
+        RunDay([](){day7::Run("input/day7.txt");});
+    });
+} 

@@ -20,6 +20,7 @@ namespace day6
         for(int i = 0; i < input[0].size(); ++i)
         {
             std::vector<char> arr;
+            arr.reserve(4);
             bool duplicate = false;
             for(int j = 0; j < 4; ++j)
             {
@@ -51,6 +52,7 @@ namespace day6
         for(int i = 0; i < input[0].size(); ++i)
         {
             std::vector<char> arr;
+            arr.reserve(14);
             bool duplicate = false;
             for(int j = 0; j < 14; ++j)
             {
