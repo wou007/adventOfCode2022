@@ -5,7 +5,7 @@
 
 namespace bittwiddling
 {
-//Source: https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetNaive
+//Source: https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
 static uint32_t CountBitsSet(uint32_t v)
 {
     unsigned int c; // c accumulates the total bits set in v

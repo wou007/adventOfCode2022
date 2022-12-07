@@ -10,7 +10,7 @@
 
 namespace day7
 {
-    int CountDirectorySizePT1(const std::vector<std::string>& input, int& rowNumber, long& total)
+    int ListAllDirectorySizes(const std::vector<std::string>& input, int& rowNumber, std::vector<long>& list)
     {
         int count = 0;
         while(rowNumber < input.size())
@@ -18,19 +18,15 @@ namespace day7
             std::string row = input[rowNumber++];
             if(stringtools::contains(row,"$ cd .."))
             {
-                if(count <= 100000)
-                {
-                    total += count;
-                }
                 break;
             }
             else if(stringtools::contains(row,"$ cd "))
             {
-                count += CountDirectorySizePT1(input,rowNumber,total);
+                count += ListAllDirectorySizes(input,rowNumber,list);
             }
             else if(stringtools::contains(row,"$ ls")) //ignore
             {
-
+                
             }
             else if(stringtools::contains(row,"dir "))// ignore
             {
@@ -43,39 +39,9 @@ namespace day7
                 count += stoi(splits[0]);
             }
         }
-        return count;
-    }
 
-    int ListDirectorySizes(const std::vector<std::string>& input, int& rowNumber, std::vector<long>& list)
-    {
-        int count = 0;
-        while(rowNumber < input.size())
-        {
-            std::string row = input[rowNumber++];
-            if(stringtools::contains(row,"$ cd .."))
-            {
-                break;
-            }
-            else if(stringtools::contains(row,"$ cd "))
-            {
-                count += ListDirectorySizes(input,rowNumber,list);
-            }
-            else if(stringtools::contains(row,"$ ls")) //ignore
-            {
-
-            }
-            else if(stringtools::contains(row,"dir "))// ignore
-            {
-                
-            }
-            else
-            {
-                std::vector<std::string> splits;
-                stringtools::splitString(row," ",splits);
-                count += stoi(splits[0]);
-            }
-        }
         list.push_back(count);
+
         return count;
     }
 
@@ -87,7 +53,16 @@ namespace day7
         fileio::fileToStringVector(pFilePath, input);
 
         int line = 1;
-        CountDirectorySizePT1(input,line,result);
+        std::vector<long> list;
+        ListAllDirectorySizes(input,line,list);
+
+        for(long l : list)
+        {
+            if(l <= 100000)
+            {
+                result += l;
+            }   
+        }
 
         std::cout << "Day 07-1: " << result << "\n";
     }
@@ -100,12 +75,8 @@ namespace day7
         fileio::fileToStringVector(pFilePath, input);
 
         int line = 1;
-        long total = 0;
-        long totalsize = CountDirectorySizePT1(input,line,total);
-
         std::vector<long> list;
-        line = 1;
-        ListDirectorySizes(input, line, list);
+        long totalsize = ListAllDirectorySizes(input,line,list);
 
         std::sort(list.begin(),list.end());
 
