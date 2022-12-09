@@ -7,7 +7,7 @@
 #include "tools/vectortools.h"
 #include "tools/bittwiddling.h"
 
-#include "day6.h"
+#include "day06.h"
 
 namespace day6
 {

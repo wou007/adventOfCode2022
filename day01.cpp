@@ -6,7 +6,7 @@
 #include "tools/matrix.h"
 #include "tools/vectortools.h"
 
-#include "day1.h"
+#include "day01.h"
 
 namespace day1
 {
