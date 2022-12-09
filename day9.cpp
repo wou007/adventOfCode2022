@@ -100,9 +100,28 @@ namespace day9
                 {
                     if(std::abs(rope[j].GetX() - rope[j - 1].GetX()) > 1 || std::abs(rope[j].GetY() - rope[j - 1].GetY()) > 1)
                     {
-                        matrix::Coordinate tempprev = rope[j];
-                        rope[j] = prev;
-                        prev = tempprev;
+                        if(std::abs(rope[j].GetX() - rope[j - 1].GetX()) > 0) 
+                        {
+                            if(rope[j].GetX() > rope[j - 1].GetX())
+                            {
+                                rope[j].SetX(rope[j].GetX() - 1);
+                            }
+                            else
+                            {
+                                rope[j].SetX(rope[j].GetX() + 1);
+                            }
+                        }
+                        if(std::abs(rope[j].GetY() - rope[j - 1].GetY()) > 0)
+                        {
+                            if(rope[j].GetY() > rope[j - 1].GetY())
+                            {
+                                rope[j].SetY(rope[j].GetY() - 1);
+                            }
+                            else
+                            {
+                                rope[j].SetY(rope[j].GetY() + 1);
+                            }
+                        }
                         if(!vectortools::DoesContainItem(visited,rope[9]))
                         {
                             visited.push_back(rope[9]);
