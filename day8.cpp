@@ -20,14 +20,16 @@ namespace day8
             if(map.GetValueOfPoint(i,y) >= valueOfTree)
             {
                 visible[0] = false;
+                break;
             }
         }
-
+        
         for(int i = x + 1; i < map.GetWidth(); i++)
         {
             if(map.GetValueOfPoint(i,y) >= valueOfTree)
             {
                 visible[1] = false;
+                break;
             }
         }
 
@@ -36,6 +38,7 @@ namespace day8
             if(map.GetValueOfPoint(x,i) >= valueOfTree)
             {
                 visible[2] = false;
+                break;
             }
         }
 
@@ -44,6 +47,7 @@ namespace day8
             if(map.GetValueOfPoint(x,i) >= valueOfTree)
             {
                 visible[3] = false;
+                break;
             }
         } 
 
@@ -122,9 +126,9 @@ namespace day8
         matrix::Matrix<char> map;
         map.FillFromFile(pFilePath);
 
-        for(int x = 0; x < map.GetWidth(); x++)
+        for(int x = 1; x < map.GetWidth() - 1; x++)
         {
-            for(int y = 0; y < map.GetHeight(); y++)
+            for(int y = 1; y < map.GetHeight() - 1; y++)
             {
                 int score = calculateScenicScore(map,x,y);
                 result = std::max(result,score);

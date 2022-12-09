@@ -4,12 +4,17 @@
 #include <vector>
 #include "fileio.h"
 
+//0,0 is top left!!!
+
 namespace matrix
 {
     class Coordinate
     {
     public:
+        inline bool operator==(const Coordinate& rhs) const { return (m_x == rhs.m_x) && (m_y == rhs.m_y);  }
+
         Coordinate(int x,int y) : m_x(x),m_y(y) {};
+        Coordinate() : m_x(0),m_y(0) {};
         virtual ~Coordinate() = default;
 
         int GetX() {return m_x;}
@@ -52,7 +57,7 @@ namespace matrix
             m_matrix.clear();
             std::vector<std::string> file;
             fileio::fileToStringVector(pFilePath,file);
-            for(int i = file.size() - 1; i >=0; --i)
+            for(int i = 0; i < file.size(); ++i)
             {
                 std::vector<T> temp;
                 for(T c : file[i])
@@ -65,7 +70,7 @@ namespace matrix
 
         void Print() const
         {
-            for(int i = m_matrix.size() - 1; i >=0; --i)
+            for(int i = 0; i < m_matrix.size(); ++i)
             {
                 for(T c : m_matrix[i])
                 {
