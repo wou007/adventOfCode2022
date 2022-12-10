@@ -13,4 +13,4 @@ AOC2022.exe: $(OBJ_FILES)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 	if not exist $(OBJ_DIR) mkdir $(OBJ_DIR)
-	g++ $(CPPFLAGS) $(CXXFLAGS) -c -o $@ $<
+	g++ $(CPPFLAGS) -c -o $@ $<
