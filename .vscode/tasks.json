@@ -3,13 +3,11 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "g++",
+            "command": "mingw32-make",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${workspaceFolder}/**.cpp",
-                "-o",
-                "${workspaceFolder}/AOC2022"
+                "Makefile",
+                "all",
+                "-j8"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
