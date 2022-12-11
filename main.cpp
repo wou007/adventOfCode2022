@@ -12,6 +12,7 @@
 #include "day08.h"
 #include "day09.h"
 #include "day10.h"
+#include "day11.h"
 
 void RunDay(std::function<void()> f, int runs = 1)
 {
@@ -53,6 +54,7 @@ int main()
         // RunDay([](){day7::Run("input/day07.txt");});
         // RunDay([](){day8::Run("input/day08.txt");});
         // RunDay([](){day9::Run("input/day09.txt");});
-        RunDay([](){day10::Run("input/day10.txt");});
+        // RunDay([](){day10::Run("input/day10.txt");});
+        RunDay([](){day11::Run("input/day11.txt");});
     });
 } 
