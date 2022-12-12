@@ -13,6 +13,7 @@
 #include "day09.h"
 #include "day10.h"
 #include "day11.h"
+#include "day12.h"
 
 void RunDay(std::function<void()> f, int runs = 1)
 {
@@ -45,16 +46,17 @@ int main()
     std::cout << "Advent of code 2022\n\n";
     RunDay([](){
 
-        // RunDay([](){day1::Run("input/day01.txt");});
-        // RunDay([](){day2::Run("input/day02.txt");});
-        // RunDay([](){day3::Run("input/day03.txt");});
-        // RunDay([](){day4::Run("input/day04.txt");});
-        // RunDay([](){day5::Run("input/day05.txt");});
-        // RunDay([](){day6::Run("input/day06.txt");});
-        // RunDay([](){day7::Run("input/day07.txt");});
-        // RunDay([](){day8::Run("input/day08.txt");});
-        // RunDay([](){day9::Run("input/day09.txt");});
-        // RunDay([](){day10::Run("input/day10.txt");});
+        RunDay([](){day1::Run("input/day01.txt");});
+        RunDay([](){day2::Run("input/day02.txt");});
+        RunDay([](){day3::Run("input/day03.txt");});
+        RunDay([](){day4::Run("input/day04.txt");});
+        RunDay([](){day5::Run("input/day05.txt");});
+        RunDay([](){day6::Run("input/day06.txt");});
+        RunDay([](){day7::Run("input/day07.txt");});
+        RunDay([](){day8::Run("input/day08.txt");});
+        RunDay([](){day9::Run("input/day09.txt");});
+        RunDay([](){day10::Run("input/day10.txt");});
         RunDay([](){day11::Run("input/day11.txt");});
+        RunDay([](){day12::Run("input/day12.txt");});
     });
 } 

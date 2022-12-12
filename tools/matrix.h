@@ -216,9 +216,9 @@ namespace matrix
             SetValueOfPoint(c.GetX(), c.GetY(), value);
         }
 
-        std::vector<Coordinate> GetNeigborsOf(Coordinate c) const
+        std::vector<Coordinate> GetNeigborsOf(Coordinate c,bool includeDiagonal = true) const
         {
-            return GetNeigborsOf(c.GetX(), c.GetY());
+            return GetNeigborsOf(c.GetX(), c.GetY(),includeDiagonal);
         }
 
     private:
