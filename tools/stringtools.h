@@ -20,6 +20,20 @@ namespace stringtools {
         rOutput.push_back(rInput.substr(prevPos,rInput.length()-prevPos));
     }
 
+    static std::vector<std::string> splitString(const std::string& rInput, const std::vector<std::string>& rDelimiters)
+    {
+        std::vector<std::string> output;
+        int pos = 0, prevPos = 0;
+        for(const std::string& rD : rDelimiters)
+        {
+            pos = rInput.find(rD, prevPos);
+            output.push_back(rInput.substr(prevPos,pos - prevPos));
+            prevPos = pos + rD.length();
+        }
+        output.push_back(rInput.substr(prevPos,rInput.length()-prevPos));
+        return output;
+    }
+
     static void splitString(const std::string& rInput, std::string delimiter, std::vector<std::string>& rOutput)
     {
         rOutput.clear();
@@ -30,6 +44,20 @@ namespace stringtools {
             prevPos = pos + delimiter.length();
         }
         rOutput.push_back(rInput.substr(prevPos,rInput.length()-prevPos));
+    }
+
+    static std::vector<std::string> splitString(const std::string& rInput, std::string delimiter)
+    {
+        std::vector<std::string> output;
+        output.clear();
+        int pos = 0, prevPos = 0;
+        while((pos = rInput.find(delimiter, prevPos)) != std::string::npos)
+        {
+            output.push_back(rInput.substr(prevPos,pos - prevPos));
+            prevPos = pos + delimiter.length();
+        }
+        output.push_back(rInput.substr(prevPos,rInput.length()-prevPos));
+        return output;
     }
 
     static long countAppearancesInString(const std::string& rInput, const std::string& rItemToFind)

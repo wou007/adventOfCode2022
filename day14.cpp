@@ -39,10 +39,8 @@ namespace day14
         }
 
         minX--;
-        maxX++;
-        maxY++;
-        maxX++;
-        maxY++;
+        maxX+=2;
+        maxY+=2;
 
         matrix::Matrix<char> map(maxX-minX,maxY-minY,'.');
 
@@ -147,9 +145,7 @@ namespace day14
 
         minX -= maxY;
         maxX += maxY;
-        maxY++;
-        maxX++;
-        maxY++;
+        maxY += 2;
 
         matrix::Matrix<char> map(maxX-minX,maxY-minY,'.');
 

@@ -3,7 +3,7 @@ OBJ_DIR := build
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 LDFLAGS := .
-CPPFLAGS := -g -O0
+CPPFLAGS := -g -Og
 CXXFLAGS := .
 
 all: AOC2022.exe

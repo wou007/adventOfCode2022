@@ -6,9 +6,9 @@
 #include "tools/matrix.h"
 #include "tools/vectortools.h"
 
-#include "day00.h"
+#include "day13.h"
 
-namespace day0
+namespace day13
 {
     void Part1(const char* pFilePath)
     {
@@ -17,17 +17,27 @@ namespace day0
         std::vector<std::string> input;
         fileio::fileToStringVector(pFilePath, input);
 
-        std::cout << "Day 00-1: " << result << "\n";
+        for(int i = 0; i < input.size(); i+= 3)
+        {
+            std::string a = input[i];
+            std::string b = input[i+1];
+
+            for(int j = 0; j < a.size(); ++j)
+            {
+                
+            }
+        }
+
+        std::cout << "Day 13-1: " << result << "\n";
     }
 
     void Part2(const char* pFilePath)
     {
         long result = 0;
 
-        std::vector<std::string> input;
-        fileio::fileToStringVector(pFilePath, input);
 
-        std::cout << "Day 00-2: " << result << "\n";
+
+        std::cout << "Day 13-2: " << result << "\n";
     }
 
     void Run(const char* pFilePath)
