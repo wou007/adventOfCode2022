@@ -37,6 +37,23 @@ namespace vectortools {
     }
 
     template <class T>
+    static bool DoVectorsContainSameItems(const std::vector<T>& rA, const std::vector<T>& rB)
+    {
+        bool result = true;
+
+        for (const T& i : rA)
+        {
+            result = DoesContainItem(rB,i);
+            if(!result)
+            {
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    template <class T>
     static void RemoveItemOnIndex(std::vector<T>& rVector, int index)
     {
         auto it = rVector.begin();
@@ -61,7 +78,7 @@ namespace vectortools {
     }
 
     template <class T>
-    void RemoveDuplicateItems(std::vector<T>& rVector)
+    static void RemoveDuplicateItems(std::vector<T>& rVector)
     {
         std::vector<T> foundItems;
         for(auto b = rVector.begin(); b < rVector.end(); ++b)
@@ -79,7 +96,7 @@ namespace vectortools {
     }
 
     template <class T>
-    void Print(const std::vector<T>& rVector)
+    static void Print(const std::vector<T>& rVector)
     {
         for(int i = 0; i < rVector.size(); ++i)
         {

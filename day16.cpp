@@ -17,68 +17,61 @@ namespace day16
         std::string name;
         int rate;
         std::vector<std::string> neigbors;
+        std::map<std::string,int> distanceToNeigbors;
+
+        void CalculateDistanceToAllNeigborsWithRate(const std::vector<Valve>& valveList, Valve CurrentVisiting, int currentDistance)
+        {
+            if(CurrentVisiting.name == name && currentDistance > 0)
+            {
+                return; //back at start
+            }
+            else if(distanceToNeigbors.find(CurrentVisiting.name) != distanceToNeigbors.end())
+            {
+                if(distanceToNeigbors[CurrentVisiting.name] <= currentDistance)
+                {
+                    return; //no cheaper way found
+                }
+            }
+
+            distanceToNeigbors[CurrentVisiting.name] = currentDistance;
+
+            for(const std::string& n : CurrentVisiting.neigbors)
+            {
+                for(const Valve& v : valveList)
+                {   
+                    if(v.name == n)
+                    {
+                        CalculateDistanceToAllNeigborsWithRate(valveList, v, currentDistance + 1);
+                    }
+                }
+            }
+        }
     };
 
-    class Memory
-    {
-        public:
-        std::string name;
-        int minutesLeft;
-        std::vector<std::string> openedValves;
-        int result;
-    };
-
-    std::vector<Memory> memory;
-
-    int CalculateMaxPressurePossible(const std::vector<Valve>& valves, std::vector<std::string> openedValves, std::string currentPosition, int minutesLeft)
+    int CalculateMaxPressurePossible(std::vector<Valve>& valves, std::vector<std::string> openedValves, Valve& currentPosition, int minutesLeft)
     {
         int minutesLeftorig = minutesLeft;
         int result = 0;
         int maxPath = 0;
         std::vector<std::string> openedValvesOrig = openedValves;
 
-        for(Memory m : memory)
+        if(currentPosition.rate > 0 && !vectortools::DoesContainItem(openedValves,currentPosition.name))
         {
-            if(m.name == currentPosition && m.minutesLeft == minutesLeft && m.openedValves == openedValves)
-            {
-                return m.result;
-            }
+            minutesLeft--;
+            openedValves.push_back(currentPosition.name);
+            result = minutesLeft * currentPosition.rate;
         }
 
-        for(auto v : valves)
+        for(Valve& n : valves)
         {
-            if(v.name == currentPosition)
+            if(currentPosition.distanceToNeigbors[n.name] < minutesLeft)
             {
-                if(v.rate > 0 && !vectortools::DoesContainItem(openedValves,currentPosition))
+                if(n.rate > 0 && !vectortools::DoesContainItem(openedValves,n.name))
                 {
-                    minutesLeft--;
-                    openedValves.push_back(currentPosition);
-                    result = minutesLeft * v.rate;
+                    maxPath = std::max(maxPath,CalculateMaxPressurePossible(valves,openedValves,n,minutesLeft - currentPosition.distanceToNeigbors[n.name]));
                 }
-
-                if(minutesLeft > 1)
-                {
-                    for(auto n : v.neigbors)
-                    {
-                        maxPath = std::max(maxPath,CalculateMaxPressurePossible(valves,openedValves,n,minutesLeft - 1));
-                    }
-                }
-                else{
-                    //std::cout << minutesLeft << currentPosition << std::endl;
-                }
-                break;
             }
         }
-
-        std::cout << currentPosition << " " << minutesLeft << ":" << result + maxPath <<std::endl;
-
-        Memory m;
-        m.minutesLeft = minutesLeftorig;
-        m.name = currentPosition;
-        m.openedValves = openedValvesOrig;
-        m.result = result + maxPath;
-
-        memory.push_back(m);
 
         return result + maxPath;
     }
@@ -112,7 +105,18 @@ namespace day16
             valves.push_back(v);
         }
 
-        result = CalculateMaxPressurePossible(valves,std::vector<std::string>(),"AA",30);
+        Valve start;
+
+        for(Valve& v : valves)
+        {
+            v.CalculateDistanceToAllNeigborsWithRate(valves,v,0);
+            if(v.name == "AA")
+            {
+                start = v;
+            }
+        }
+
+        result = CalculateMaxPressurePossible(valves,std::vector<std::string>(),start,30);
 
         std::cout << "Day 16-1: " << result << "\n";
     }
